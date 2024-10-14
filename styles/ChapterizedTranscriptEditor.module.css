@@ -1,0 +1,506 @@
+.editorContainer {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: #1a202c;
+  color: white;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #2d3748;
+  margin-bottom: 16px;
+}
+
+.logo,
+.userIcon {
+  font-size: 1.5rem;
+  color: #FFA500;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #FFA500;
+}
+
+.videoProgress {
+  padding: 1rem;
+  background-color: #2d3748;
+  margin-bottom: 16px;
+}
+
+.progressBar {
+  width: 100%;
+  accent-color: #8A2BE2;
+}
+
+.timeDisplay {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  color: #FFA500;
+}
+
+.mainContent {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.leftPanel,
+.rightPanel {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #2d3748;
+}
+
+.leftPanel {
+  border-right: 1px solid #4a5568;
+}
+
+.rightPanel {
+  position: relative;
+  transition: flex 0.3s ease;
+}
+
+.rightPanel.collapsed {
+  flex: 0 0 40px;
+  overflow: hidden;
+}
+
+.collapseButton {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-color: #4a5568;
+  color: white;
+  border: none;
+  padding: 10px 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.collapseButton:hover {
+  background-color: #5a6678;
+}
+
+.rightPanel.collapsed .collapseButton {
+  left: 5px;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #4a5568;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab:hover {
+  background-color: #5a6678;
+}
+
+.activeTab {
+  background-color: #8A2BE2;
+  font-weight: bold;
+}
+
+.tabIcon {
+  margin-right: 0.5rem;
+}
+
+.chapterList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+.chapterItem {
+  border: 1px solid #4a5568;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.chapterHeader {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #4a5568;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chapterHeader:hover {
+  background-color: #5a6678;
+}
+
+.chapterIcon {
+  margin-right: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.chapterItem[aria-expanded="true"] .chapterIcon {
+  transform: rotate(90deg);
+}
+
+.chapterTitle {
+  flex-grow: 1;
+  font-weight: bold;
+  color: #FFA500;
+}
+
+.chapterTitleInput {
+  flex-grow: 1;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  color: white;
+  padding: 0.25rem;
+  margin: -0.25rem;
+  border-radius: 2px;
+}
+
+.chapterTitleInput:focus {
+  outline: none;
+  background-color: #1a202c;
+  box-shadow: 0 0 0 2px #8A2BE2;
+}
+
+.chapterTime {
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  color: #FFA500;
+}
+
+.chapterTranscript {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.chapterItem[aria-expanded="true"] .chapterTranscript {
+  max-height: 500px;
+  padding: 0.5rem;
+}
+
+.transcriptItem {
+  display: flex;
+  padding: 0.5rem;
+  border-top: 1px solid #4a5568;
+  transition: background-color 0.3s ease;
+}
+
+.transcriptItem:hover {
+  background-color: rgba(138, 43, 226, 0.2);
+}
+
+.transcriptItem:first-child {
+  border-top: none;
+}
+
+.transcriptTime {
+  min-width: 120px;
+  font-size: 0.8rem;
+  color: #FFA500;
+  display: flex;
+  flex-direction: column;
+}
+
+.transcriptText {
+  flex-grow: 1;
+  color: white;
+  background-color: transparent;
+  border: none;
+  resize: vertical;
+  min-height: 2.5em;
+}
+
+.transcriptText:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.contextSection,
+.versionsSection {
+  margin-bottom: 1rem;
+}
+
+.contextContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contextTextarea {
+  width: 100%;
+  resize: vertical;
+  padding: 0.5rem;
+  border: 1px solid #4a5568;
+  border-radius: 4px;
+  background-color: #1a202c;
+  color: white;
+  min-height: 100px;
+}
+
+.sendButton {
+  align-self: flex-end;
+  padding: 0.5rem 1rem;
+  background-color: #8A2BE2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sendButton:hover {
+  background-color: #9B30FF;
+}
+
+.mediaIdSection {
+  margin-bottom: 1rem;
+}
+
+.mediaId {
+  font-size: 0.8rem;
+  color: #FFA500;
+}
+
+.versionsSection {
+  background-color: #2d3748;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.versionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #4a5568;
+  cursor: pointer;
+}
+
+.versionHeader h2 {
+  margin: 0;
+  color: #FFA500;
+}
+
+.expandIcon {
+  transition: transform 0.3s ease;
+}
+
+.expanded .expandIcon {
+  transform: rotate(180deg);
+}
+
+.versionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.expanded .versionContent {
+  max-height: 500px;
+}
+
+.versionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #4a5568;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.versionItem:hover {
+  background-color: #5a6678;
+}
+
+.currentVersion {
+  background-color: rgba(138, 43, 226, 0.2);
+}
+
+.versionNumber {
+  font-weight: bold;
+  color: #FFA500;
+}
+
+.versionDate {
+  font-size: 0.8rem;
+  color: #FFA500;
+}
+
+.buttonContainer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.saveButton,
+.downloadButton {
+  padding: 0.5rem 1rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 1;
+}
+
+.saveButton {
+  background-color: #8A2BE2;
+}
+
+.saveButton:hover:not(.disabled) {
+  background-color: #9B30FF;
+}
+
+.saveButton.disabled {
+  background-color: #4a5568;
+  cursor: not-allowed;
+}
+
+.downloadButton {
+  background-color: #FFA500;
+}
+
+.downloadButton:hover {
+  background-color: #FFB52E;
+}
+
+.customAlert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+}
+
+.success {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.error {
+  background-color: #f44336;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glossary styles */
+.glossaryContent {
+  padding: 1rem;
+  background-color: #2d3748;
+  border-radius: 4px;
+}
+
+.glossaryTable {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+
+.glossaryTable th,
+.glossaryTable td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #4a5568;
+}
+
+.glossaryTable th {
+  background-color: #4a5568;
+  font-weight: bold;
+  color: #FFA500;
+}
+
+.glossaryTable tr:hover {
+  background-color: rgba(138, 43, 226, 0.2);
+}
+
+.checkButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkButton:hover {
+  background-color: #45a049;
+}
